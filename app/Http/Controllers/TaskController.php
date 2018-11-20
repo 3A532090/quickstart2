@@ -22,7 +22,11 @@ class TaskController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
         ]);
+        $request->user()->tasks()->create([
+            'name' => $request->name,
+        ]);
 
-        // Create The Task...
+        return redirect('/tasks');
+
     }
 }
